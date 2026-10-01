@@ -1353,15 +1353,28 @@
             const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLng);
             return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
         }
+        // 이모지 기본 각도(북=0): ✈️≈북동 45°, 🚌·🚆≈동 90°
         const PLANE_REST_DEG = 45;
-        function planeRotate(from, to) { return headingDeg(from, to) - PLANE_REST_DEG; }
+        const BUS_REST_DEG = 90;
+        const TRAIN_REST_DEG = 90;
+        function moverRestDeg(mode) {
+            if (mode === 'air') return PLANE_REST_DEG;
+            if (mode === 'train') return TRAIN_REST_DEG;
+            return BUS_REST_DEG;
+        }
+        function moverRotate(mode, from, to) {
+            return headingDeg(from, to) - moverRestDeg(mode);
+        }
+        function headingPair(latlngs, i) {
+            // 짧은 지그재그 구간은 건너뛰어 기수가 뒤로 뒤집히는 현상 완화
+            const a = latlngs[Math.max(0, Math.min(i, latlngs.length - 1))];
+            let j = Math.min(Math.max(i + 1, 1), latlngs.length - 1);
+            while (j < latlngs.length - 1 && L.latLng(a).distanceTo(L.latLng(latlngs[j])) < 35) j++;
+            return [a, latlngs[j]];
+        }
         function moverIcon(mode, from, to) {
             const emoji = mode === 'air' ? '✈️' : (mode === 'train' ? '🚆' : '🚌');
-            let rot = 0;
-            if (from && to) {
-                if (mode === 'air') rot = planeRotate(from, to);
-                else rot = headingDeg(from, to);
-            }
+            const rot = (from && to) ? moverRotate(mode, from, to) : 0;
             return L.divIcon({
                 className: 'custom-icon',
                 html: `<div class="map-bus" style="transform:rotate(${rot}deg)">${emoji}</div>`,
@@ -1369,11 +1382,11 @@
             });
         }
         function applyHeading(marker, from, to, mode) {
-            if (!marker) return;
+            if (!marker || !from || !to) return;
+            if (L.latLng(from).distanceTo(L.latLng(to)) < 8) return;
             const el = marker.getElement(); if (!el) return;
             const bus = el.querySelector('.map-bus'); if (!bus) return;
-            if (mode === 'air') bus.style.transform = `rotate(${planeRotate(from, to)}deg)`;
-            else bus.style.transform = `rotate(${headingDeg(from, to)}deg)`;
+            bus.style.transform = `rotate(${moverRotate(mode, from, to)}deg)`;
         }
         function clearMapLayers() {
             if (activeBus) activeBus._aborted = true;
@@ -1457,7 +1470,8 @@
                 const dists = [0]; let total = 0;
                 for (let i = 1; i < latlngs.length; i++) { total += L.latLng(latlngs[i-1]).distanceTo(L.latLng(latlngs[i])); dists.push(total); }
                 if (total === 0) { resolve(); return; }
-                applyHeading(marker, latlngs[0], latlngs[1], mode);
+                const [h0a, h0b] = headingPair(latlngs, 0);
+                applyHeading(marker, h0a, h0b, mode);
                 const start = performance.now();
                 const ease = t => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;
                 let lastPan = 0;
@@ -1471,7 +1485,8 @@
                     const f = (target - dists[i-1]) / span;
                     const ll = [a[0]+(b[0]-a[0])*f, a[1]+(b[1]-a[1])*f];
                     marker.setLatLng(ll);
-                    applyHeading(marker, a, b, mode);
+                    const [ha, hb] = headingPair(latlngs, i - 1);
+                    applyHeading(marker, ha, hb, mode);
                     // 장거리 항공은 기수를 따라 카메라가 같이 이동해 동선이 끊기지 않게
                     if (followCam && map && now - lastPan > 80) {
                         map.panTo(ll, { animate: false });
