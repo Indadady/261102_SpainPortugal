@@ -89,10 +89,24 @@
             width: 100%; max-width: 520px; aspect-ratio: 3/2; height: auto;
             object-fit: cover; border-radius: .75rem; display: block; margin: 0 auto;
         }
-        /* 모바일에서 keep-all + overflow-hidden 조합으로 설명이 잘려 보이지 않게 */
+        @media (max-width: 768px) {
+            .schedule-thumb { max-height: 160px; width: 100%; object-fit: cover; }
+            .schedule-thumbs { margin-top: 1rem; }
+        }
+        /* 모바일에서 설명이 잘리거나 이미지에 가려지지 않게 */
         .schedule-content { overflow: visible; }
         .schedule-timeline { min-width: 0; max-width: 100%; }
-        .schedule-timeline p {
+        .schedule-timeline > .relative { min-width: 0; }
+        .schedule-desc {
+            display: block;
+            margin-top: .5rem;
+            padding: .75rem .875rem;
+            border-radius: .75rem;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            color: #334155;
+            font-size: .875rem;
+            line-height: 1.6;
             max-width: 100%;
             overflow-wrap: anywhere;
             word-break: keep-all;
@@ -372,24 +386,24 @@
                             <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조— · 중 공항식 · 석 기내식</span>
                         </div>
                     </div>
-                    <img src="assets/images/og-thumb.jpg" alt="바르셀로나 도착" class="schedule-thumb mb-5">
                     <div class="schedule-timeline relative border-l-2 border-slate-300 ml-3 sm:ml-4 pl-5 sm:pl-6 space-y-5">
                         <div class="relative">
                             <div class="timeline-dot bg-tm ring-teal-100"></div>
                             <h4 class="font-bold text-slate-800">서귀포 집결 · 제주공항</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">서귀포에서 집결한 뒤 제주국제공항으로 이동합니다. <strong>OZ8900</strong> 제주→김포 국내선이며, <strong>수하물 연계가 되지 않으니</strong> 김포에서 다시 수하물을 찾아 인천행 버스에 실어야 합니다.</p>
+                            <p class="schedule-desc">서귀포에서 집결한 뒤 제주국제공항으로 이동합니다. <strong>OZ8900</strong> 제주→김포 국내선이며, <strong>수하물 연계가 되지 않으니</strong> 김포에서 다시 수하물을 찾아 인천행 버스에 실어야 합니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-slate-500 ring-slate-100"></div>
                             <h4 class="font-bold text-slate-800">김포 → 인천 전용버스 · TW402 출국</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">김포 도착 후 전용버스로 인천국제공항 T1으로 이동합니다. <strong>TW402</strong> 인천→바르셀로나 직항편으로 유럽 일정을 시작합니다. 장거리 비행이니 기내에서는 수분 섭취와 가벼운 스트레칭을 권합니다.</p>
+                            <p class="schedule-desc">김포 도착 후 전용버스로 인천국제공항 T1으로 이동합니다. <strong>TW402</strong> 인천→바르셀로나 직항편으로 유럽 일정을 시작합니다. 장거리 비행이니 기내에서는 수분 섭취와 가벼운 스트레칭을 권합니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-rose-600 ring-rose-100"></div>
                             <h4 class="font-bold text-slate-800">바르셀로나 도착 · 가이드 미팅 · 호텔</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">현지 시각으로 저녁에 바르셀로나 공항에 도착합니다. 가이드 미팅 후 차량으로 이동해 <strong>Hotel Acta Sant Just</strong>(또는 동급)에 투숙하며, 첫날은 휴식으로 시차를 맞춥니다.</p>
+                            <p class="schedule-desc">현지 시각으로 저녁에 바르셀로나 공항에 도착합니다. 가이드 미팅 후 차량으로 이동해 <strong>Hotel Acta Sant Just</strong>(또는 동급)에 투숙하며, 첫날은 휴식으로 시차를 맞춥니다.</p>
                         </div>
                     </div>
+                    <div class="schedule-thumbs mt-5 mb-1"><img src="assets/images/og-thumb.jpg" alt="바르셀로나 도착" class="schedule-thumb mb-5"></div>
                     <p class="mt-5 text-right"><button type="button" onclick="changeMap('day1');document.getElementById('map-section').scrollIntoView({behavior:'smooth'})" class="text-xs font-bold text-tm hover:underline">이 날 동선 보기 →</button></p>
                 </div>
 
@@ -401,26 +415,26 @@
                             <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조 호텔 · 중 현지 · 석 현지</span>
                         </div>
                     </div>
-                    <div class="grid sm:grid-cols-2 gap-3 mb-5">
-                        <img src="assets/images/day2-sagrada.jpg" alt="성가족성당" class="schedule-thumb">
-                        <img src="assets/images/day2-guell.jpg" alt="구엘공원" class="schedule-thumb">
-                    </div>
                     <div class="schedule-timeline relative border-l-2 border-slate-300 ml-3 sm:ml-4 pl-5 sm:pl-6 space-y-5">
                         <div class="relative">
                             <div class="timeline-dot bg-amber-600 ring-amber-100"></div>
                             <h4 class="font-bold text-slate-800">성가족성당 · 구엘공원</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed"><strong>성가족성당(Sagrada Família)</strong>은 가우디가 평생을 바친 걸작으로, 석조 탑과 채색 스테인드글라스가 어우러진 바르셀로나의 상징입니다. 이어서 찾는 <strong>구엘공원</strong>은 구불구불한 벤치·모자이크·자연과 건축이 한몸처럼 이어진 동화적 공간입니다.</p>
+                            <p class="schedule-desc"><strong>성가족성당(Sagrada Família)</strong>은 가우디가 평생을 바친 걸작으로, 석조 탑과 채색 스테인드글라스가 어우러진 바르셀로나의 상징입니다. 이어서 찾는 <strong>구엘공원</strong>은 구불구불한 벤치·모자이크·자연과 건축이 한몸처럼 이어진 동화적 공간입니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-rose-600 ring-rose-100"></div>
                             <h4 class="font-bold text-slate-800">카사밀라 · 구엘저택 · 카사바트요 등</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">그라시아 거리 일대의 <strong>카사밀라(라 페드레라)</strong>, 곡선 파사드의 <strong>카사바트요</strong>, 그리고 <strong>구엘 저택</strong> 등 가우디·카탈루냐 모더니즘 건축을 외관 중심으로 둘러봅니다. 돌·철·타일이 살아 움직이는 듯한 거리 풍경이 백미입니다.</p>
+                            <p class="schedule-desc">그라시아 거리 일대의 <strong>카사밀라(라 페드레라)</strong>, 곡선 파사드의 <strong>카사바트요</strong>, 그리고 <strong>구엘 저택</strong> 등 가우디·카탈루냐 모더니즘 건축을 외관 중심으로 둘러봅니다. 돌·철·타일이 살아 움직이는 듯한 거리 풍경이 백미입니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-slate-600 ring-slate-100"></div>
                             <h4 class="font-bold text-slate-800">BCN공항 → VY1182 → 포르투 호텔</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">저녁 <strong>VY1182</strong> 바르셀로나→포르투 연결편으로 이동합니다. 도착 후 차량으로 <strong>HF Ipanema Park</strong>(또는 동급)에 투숙하며, 다음 날 포르투 시내 탐방을 준비합니다.</p>
+                            <p class="schedule-desc">저녁 <strong>VY1182</strong> 바르셀로나→포르투 연결편으로 이동합니다. 도착 후 차량으로 <strong>HF Ipanema Park</strong>(또는 동급)에 투숙하며, 다음 날 포르투 시내 탐방을 준비합니다.</p>
                         </div>
+                    </div>
+                    <div class="schedule-thumbs grid sm:grid-cols-2 gap-3 mt-5 mb-1">
+                        <img src="assets/images/day2-sagrada.jpg" alt="성가족성당" class="schedule-thumb">
+                        <img src="assets/images/day2-guell.jpg" alt="구엘공원" class="schedule-thumb">
                     </div>
                     <p class="mt-5 text-right"><button type="button" onclick="changeMap('day2');document.getElementById('map-section').scrollIntoView({behavior:'smooth'})" class="text-xs font-bold text-tm hover:underline">이 날 동선 보기 →</button></p>
                 </div>
@@ -433,26 +447,26 @@
                             <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조 호텔 · 중 현지 · 석 현지</span>
                         </div>
                     </div>
-                    <div class="grid sm:grid-cols-2 gap-3 mb-5">
-                        <img src="assets/images/day3-porto.jpg" alt="포르투" class="schedule-thumb">
-                        <img src="assets/images/day3-lello.jpg" alt="렐루서점" class="schedule-thumb">
-                    </div>
                     <div class="schedule-timeline relative border-l-2 border-slate-300 ml-3 sm:ml-4 pl-5 sm:pl-6 space-y-5">
                         <div class="relative">
                             <div class="timeline-dot bg-tm ring-teal-100"></div>
                             <h4 class="font-bold text-slate-800">리베르다지광장 · 시청 · 렐루서점 · 상벤투역</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed"><strong>리베르다지 광장</strong>과 시청 일대는 포르투의 중심축입니다. 붉은 계단으로 유명한 <strong>렐루 서점</strong>은 해리포터 영감 설화가 전해지는 명소이고, <strong>상벤투 역</strong> 홀의 푸른 아줄레주 타일은 포르투갈 철도·도시미학의 하이라이트입니다.</p>
+                            <p class="schedule-desc"><strong>리베르다지 광장</strong>과 시청 일대는 포르투의 중심축입니다. 붉은 계단으로 유명한 <strong>렐루 서점</strong>은 해리포터 영감 설화가 전해지는 명소이고, <strong>상벤투 역</strong> 홀의 푸른 아줄레주 타일은 포르투갈 철도·도시미학의 하이라이트입니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-indigo-600 ring-indigo-100"></div>
                             <h4 class="font-bold text-slate-800">카르무성당 · 포르투대성당 · 돔루이스 다리</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">측면을 타일로 덮은 <strong>카르무 성당</strong>, 언덕 위 <strong>포르투 대성당</strong>에서 구시가를 내려다본 뒤, 도우루 강을 가로지르는 <strong>돔 루이스 1세 다리</strong>와 리베이라 강변 풍경을 감상합니다. 유네스코 세계유산 도시의 대표 스냅 포인트입니다.</p>
+                            <p class="schedule-desc">측면을 타일로 덮은 <strong>카르무 성당</strong>, 언덕 위 <strong>포르투 대성당</strong>에서 구시가를 내려다본 뒤, 도우루 강을 가로지르는 <strong>돔 루이스 1세 다리</strong>와 리베이라 강변 풍경을 감상합니다. 유네스코 세계유산 도시의 대표 스냅 포인트입니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-amber-700 ring-amber-100"></div>
                             <h4 class="font-bold text-slate-800">포트 와이너리</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">강 건너 빌라 노바 디 가이아 쪽 <strong>포트 와이너리</strong>에서 포트 와인의 숙성·수출 역사를 둘러봅니다. 도우루 계곡에서 온 와인이 항구도시 포르투의 이름을 세계에 알린 배경을 짧게 느껴 볼 수 있습니다. 숙소는 HF Ipanema Park(또는 동급)입니다.</p>
+                            <p class="schedule-desc">강 건너 빌라 노바 디 가이아 쪽 <strong>포트 와이너리</strong>에서 포트 와인의 숙성·수출 역사를 둘러봅니다. 도우루 계곡에서 온 와인이 항구도시 포르투의 이름을 세계에 알린 배경을 짧게 느껴 볼 수 있습니다. 숙소는 HF Ipanema Park(또는 동급)입니다.</p>
                         </div>
+                    </div>
+                    <div class="schedule-thumbs grid sm:grid-cols-2 gap-3 mt-5 mb-1">
+                        <img src="assets/images/day3-porto.jpg" alt="포르투" class="schedule-thumb">
+                        <img src="assets/images/day3-lello.jpg" alt="렐루서점" class="schedule-thumb">
                     </div>
                     <p class="mt-5 text-right"><button type="button" onclick="changeMap('day3');document.getElementById('map-section').scrollIntoView({behavior:'smooth'})" class="text-xs font-bold text-tm hover:underline">이 날 동선 보기 →</button></p>
                 </div>
@@ -465,26 +479,26 @@
                             <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조 호텔 · 중 현지 · 석 현지(특식)</span>
                         </div>
                     </div>
-                    <div class="grid sm:grid-cols-2 gap-3 mb-5">
-                        <img src="assets/images/day4-fatima.jpg" alt="파티마" class="schedule-thumb">
-                        <img src="assets/images/day4-belem.jpg" alt="벨렘" class="schedule-thumb">
-                    </div>
                     <div class="schedule-timeline relative border-l-2 border-slate-300 ml-3 sm:ml-4 pl-5 sm:pl-6 space-y-5">
                         <div class="relative">
                             <div class="timeline-dot bg-violet-600 ring-violet-100"></div>
                             <h4 class="font-bold text-slate-800">파티마 대성당 · 광장</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">1917년 성모 발현 전승으로 세계적 순례지가 된 <strong>파티마</strong>입니다. 넓은 광장과 대성당·발현 예배당을 둘러보며 신앙과 평화가 교차하는 분위기를 느껴 봅니다. 예배·미사 중에는 조용히 관람해 주세요.</p>
+                            <p class="schedule-desc">1917년 성모 발현 전승으로 세계적 순례지가 된 <strong>파티마</strong>입니다. 넓은 광장과 대성당·발현 예배당을 둘러보며 신앙과 평화가 교차하는 분위기를 느껴 봅니다. 예배·미사 중에는 조용히 관람해 주세요.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-sky-600 ring-sky-100"></div>
                             <h4 class="font-bold text-slate-800">까보다로까 · 신트라성(내부)</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed"><strong>까보다로까</strong>는 ‘유럽 대륙의 서쪽 끝’으로 불리며, 절벽 위 등대와 대서양 풍광이 인상적입니다. 이어 <strong>신트라성(무어성)</strong> 내부를 관람합니다. 이베리아 반도의 성벽 유적과 신트라 숲·궁전을 내려다보는 전망이 하이라이트입니다.</p>
+                            <p class="schedule-desc"><strong>까보다로까</strong>는 ‘유럽 대륙의 서쪽 끝’으로 불리며, 절벽 위 등대와 대서양 풍광이 인상적입니다. 이어 <strong>신트라성(무어성)</strong> 내부를 관람합니다. 이베리아 반도의 성벽 유적과 신트라 숲·궁전을 내려다보는 전망이 하이라이트입니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-amber-600 ring-amber-100"></div>
                             <h4 class="font-bold text-slate-800">제로니모스(외부) · 벨렘탑 · 로시우 · 발견기념비</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">리스본 <strong>벨렘</strong> 지구에서 대항해 시대의 흔적을 잇습니다. <strong>제로니모스 수도원</strong>(외관), 강어귀의 <strong>벨렘탑</strong>, 항해자들을 기리는 <strong>발견기념비</strong>, 시내 <strong>로시우 광장</strong>을 둘러본 뒤 리스본 시내 일급호텔(또는 동급)에 투숙합니다.</p>
+                            <p class="schedule-desc">리스본 <strong>벨렘</strong> 지구에서 대항해 시대의 흔적을 잇습니다. <strong>제로니모스 수도원</strong>(외관), 강어귀의 <strong>벨렘탑</strong>, 항해자들을 기리는 <strong>발견기념비</strong>, 시내 <strong>로시우 광장</strong>을 둘러본 뒤 리스본 시내 일급호텔(또는 동급)에 투숙합니다.</p>
                         </div>
+                    </div>
+                    <div class="schedule-thumbs grid sm:grid-cols-2 gap-3 mt-5 mb-1">
+                        <img src="assets/images/day4-fatima.jpg" alt="파티마" class="schedule-thumb">
+                        <img src="assets/images/day4-belem.jpg" alt="벨렘" class="schedule-thumb">
                     </div>
                     <p class="mt-5 text-right"><button type="button" onclick="changeMap('day4');document.getElementById('map-section').scrollIntoView({behavior:'smooth'})" class="text-xs font-bold text-tm hover:underline">이 날 동선 보기 →</button></p>
                 </div>
@@ -497,19 +511,19 @@
                             <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조 호텔 · 중 현지 · 석 한식</span>
                         </div>
                     </div>
-                    <img src="assets/images/day5-seville.jpg" alt="세비야" class="schedule-thumb mb-5">
                     <div class="schedule-timeline relative border-l-2 border-slate-300 ml-3 sm:ml-4 pl-5 sm:pl-6 space-y-5">
                         <div class="relative">
                             <div class="timeline-dot bg-slate-500 ring-slate-100"></div>
                             <h4 class="font-bold text-slate-800">리스본 → 세비야 이동</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">전용버스로 포르투갈에서 스페인 안달루시아로 넘어갑니다. 국경을 지나면 <strong>스페인 현지 시각(+1시간)</strong>으로 시계를 맞추게 되니, 가이드 안내에 따라 시차를 확인해 주세요.</p>
+                            <p class="schedule-desc">전용버스로 포르투갈에서 스페인 안달루시아로 넘어갑니다. 국경을 지나면 <strong>스페인 현지 시각(+1시간)</strong>으로 시계를 맞추게 되니, 가이드 안내에 따라 시차를 확인해 주세요.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-rose-600 ring-rose-100"></div>
                             <h4 class="font-bold text-slate-800">스페인광장 · 세비야대성당 · 히랄다탑(외관) · 황금의탑</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">반달형 건물과 타일 벤치로 유명한 <strong>스페인 광장</strong>, 콜럼버스 묘가 있는 <strong>세비야 대성당</strong>, 옛 미나레트였던 <strong>히랄다 탑</strong>(외관), 과달키비르 강변의 <strong>황금의 탑</strong>을 돌아봅니다. 안달루시아의 화려함과 이슬람·기독교 층위가 겹친 도시입니다. 숙소는 세비야 일급호텔(또는 동급, 수배 진행 중)입니다.</p>
+                            <p class="schedule-desc">반달형 건물과 타일 벤치로 유명한 <strong>스페인 광장</strong>, 콜럼버스 묘가 있는 <strong>세비야 대성당</strong>, 옛 미나레트였던 <strong>히랄다 탑</strong>(외관), 과달키비르 강변의 <strong>황금의 탑</strong>을 돌아봅니다. 안달루시아의 화려함과 이슬람·기독교 층위가 겹친 도시입니다. 숙소는 세비야 일급호텔(또는 동급, 수배 진행 중)입니다.</p>
                         </div>
                     </div>
+                    <div class="schedule-thumbs mt-5 mb-1"><img src="assets/images/day5-seville.jpg" alt="세비야" class="schedule-thumb mb-5"></div>
                     <p class="mt-5 text-right"><button type="button" onclick="changeMap('day5');document.getElementById('map-section').scrollIntoView({behavior:'smooth'})" class="text-xs font-bold text-tm hover:underline">이 날 동선 보기 →</button></p>
                 </div>
 
@@ -521,21 +535,21 @@
                             <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조 호텔 · 중 현지 · 석 현지</span>
                         </div>
                     </div>
-                    <div class="grid sm:grid-cols-2 gap-3 mb-5">
-                        <img src="assets/images/day6-cordoba.jpg" alt="코르도바" class="schedule-thumb">
-                        <img src="assets/images/day6-toledo.jpg" alt="똘레도" class="schedule-thumb">
-                    </div>
                     <div class="schedule-timeline relative border-l-2 border-slate-300 ml-3 sm:ml-4 pl-5 sm:pl-6 space-y-5">
                         <div class="relative">
                             <div class="timeline-dot bg-amber-700 ring-amber-100"></div>
                             <h4 class="font-bold text-slate-800">코르도바 — 메스키타 · 유대인지구 · 로마인다리</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed"><strong>메스키타(모스크-성당)</strong>는 이슬람 시대 기둥 숲과 훗날 들어선 가톨릭 성당이 한 건물 안에 공존하는, 스페인 역사의 상징적 공간입니다. 미로 같은 <strong>유대인 지구</strong>와 과달키비르 강의 <strong>로마인 다리</strong>까지 이어지며 ‘공존의 도시’ 코르도바를 느껴 봅니다.</p>
+                            <p class="schedule-desc"><strong>메스키타(모스크-성당)</strong>는 이슬람 시대 기둥 숲과 훗날 들어선 가톨릭 성당이 한 건물 안에 공존하는, 스페인 역사의 상징적 공간입니다. 미로 같은 <strong>유대인 지구</strong>와 과달키비르 강의 <strong>로마인 다리</strong>까지 이어지며 ‘공존의 도시’ 코르도바를 느껴 봅니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-slate-700 ring-slate-100"></div>
                             <h4 class="font-bold text-slate-800">똘레도 — 대성당 · 소코도베르 · 산토토메</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">타호 강이 감싼 언덕 도시 <strong>똘레도</strong>는 기독교·이슬람·유대 문화가 겹친 ‘세 문화의 도시’로 불립니다. <strong>대성당</strong>, 광장 <strong>소코도베르</strong>, 엘 그레코의 걸작이 있는 <strong>산토 토메 성당</strong>을 둘러본 뒤 인근 일급호텔(또는 동급, 수배 진행 중)에 투숙합니다.</p>
+                            <p class="schedule-desc">타호 강이 감싼 언덕 도시 <strong>똘레도</strong>는 기독교·이슬람·유대 문화가 겹친 ‘세 문화의 도시’로 불립니다. <strong>대성당</strong>, 광장 <strong>소코도베르</strong>, 엘 그레코의 걸작이 있는 <strong>산토 토메 성당</strong>을 둘러본 뒤 인근 일급호텔(또는 동급, 수배 진행 중)에 투숙합니다.</p>
                         </div>
+                    </div>
+                    <div class="schedule-thumbs grid sm:grid-cols-2 gap-3 mt-5 mb-1">
+                        <img src="assets/images/day6-cordoba.jpg" alt="코르도바" class="schedule-thumb">
+                        <img src="assets/images/day6-toledo.jpg" alt="똘레도" class="schedule-thumb">
                     </div>
                     <p class="mt-5 text-right"><button type="button" onclick="changeMap('day6');document.getElementById('map-section').scrollIntoView({behavior:'smooth'})" class="text-xs font-bold text-tm hover:underline">이 날 동선 보기 →</button></p>
                 </div>
@@ -548,24 +562,24 @@
                             <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조 호텔 · 중 한식 · 석 현지(특식)</span>
                         </div>
                     </div>
-                    <img src="assets/images/day7-madrid.jpg" alt="마드리드" class="schedule-thumb mb-5">
                     <div class="schedule-timeline relative border-l-2 border-slate-300 ml-3 sm:ml-4 pl-5 sm:pl-6 space-y-5">
                         <div class="relative">
                             <div class="timeline-dot bg-rose-600 ring-rose-100"></div>
                             <h4 class="font-bold text-slate-800">똘레도 → 마드리드 왕궁</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">똘레도에서 수도 마드리드로 이동합니다. <strong>마드리드 왕궁</strong>은 유럽에서도 손꼽히는 규모로, 스페인 왕정의 공식 얼굴이자 바로크·신고전주의 건축의 전시장입니다. 광장과 외관·정원 일대를 중심으로 관람합니다.</p>
+                            <p class="schedule-desc">똘레도에서 수도 마드리드로 이동합니다. <strong>마드리드 왕궁</strong>은 유럽에서도 손꼽히는 규모로, 스페인 왕정의 공식 얼굴이자 바로크·신고전주의 건축의 전시장입니다. 광장과 외관·정원 일대를 중심으로 관람합니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-indigo-600 ring-indigo-100"></div>
                             <h4 class="font-bold text-slate-800">Renfe 아토차 → 산츠 (고속열차 포함)</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed"><strong>아토차 역</strong>에서 <strong>Renfe 고속열차</strong>에 탑승해 바르셀로나 <strong>산츠 역</strong>으로 이동합니다. 중부 고원에서 지중해 연안까지 내륙을 가로지르는 구간으로, 일정에 포함된 편리한 장거리 연결편입니다.</p>
+                            <p class="schedule-desc"><strong>아토차 역</strong>에서 <strong>Renfe 고속열차</strong>에 탑승해 바르셀로나 <strong>산츠 역</strong>으로 이동합니다. 중부 고원에서 지중해 연안까지 내륙을 가로지르는 구간으로, 일정에 포함된 편리한 장거리 연결편입니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-tm ring-teal-100"></div>
                             <h4 class="font-bold text-slate-800">바르셀로나 호텔</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">산츠 도착 후 차량으로 이동해 바르셀로나 일급호텔(또는 동급, 수배 진행 중)에 투숙합니다. 다음 날 몬세랏·시내 일정을 앞두고 짐을 정리해 두면 좋습니다.</p>
+                            <p class="schedule-desc">산츠 도착 후 차량으로 이동해 바르셀로나 일급호텔(또는 동급, 수배 진행 중)에 투숙합니다. 다음 날 몬세랏·시내 일정을 앞두고 짐을 정리해 두면 좋습니다.</p>
                         </div>
                     </div>
+                    <div class="schedule-thumbs mt-5 mb-1"><img src="assets/images/day7-madrid.jpg" alt="마드리드" class="schedule-thumb mb-5"></div>
                     <p class="mt-5 text-right"><button type="button" onclick="changeMap('day7');document.getElementById('map-section').scrollIntoView({behavior:'smooth'})" class="text-xs font-bold text-tm hover:underline">이 날 동선 보기 →</button></p>
                 </div>
 
@@ -577,26 +591,26 @@
                             <span class="text-xs font-bold text-slate-500 bg-slate-50 px-2 py-1 rounded border mt-2 inline-block">조 호텔 · 중 현지 · 석 불포함</span>
                         </div>
                     </div>
-                    <div class="grid sm:grid-cols-2 gap-3 mb-5">
-                        <img src="assets/images/day8-montserrat.jpg" alt="몬세랏" class="schedule-thumb">
-                        <img src="assets/images/day8-rambla.jpg" alt="람블라스" class="schedule-thumb">
-                    </div>
                     <div class="schedule-timeline relative border-l-2 border-slate-300 ml-3 sm:ml-4 pl-5 sm:pl-6 space-y-5">
                         <div class="relative">
                             <div class="timeline-dot bg-emerald-600 ring-emerald-100"></div>
                             <h4 class="font-bold text-slate-800">몬세랏 — 케이블카/후니쿨라 · 수도원</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">톱니 모양 암벽이 인상적인 <strong>몬세랏</strong>으로 이동합니다. 케이블카 또는 후니쿨라로 산중턱에 올라 <strong>몬세랏 수도원</strong>과 ‘검은 성모’ 예배당을 둘러봅니다. 카탈루냐인의 신앙·문화 구심점으로 꼽히는 명소입니다.</p>
+                            <p class="schedule-desc">톱니 모양 암벽이 인상적인 <strong>몬세랏</strong>으로 이동합니다. 케이블카 또는 후니쿨라로 산중턱에 올라 <strong>몬세랏 수도원</strong>과 ‘검은 성모’ 예배당을 둘러봅니다. 카탈루냐인의 신앙·문화 구심점으로 꼽히는 명소입니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-rose-600 ring-rose-100"></div>
                             <h4 class="font-bold text-slate-800">람블라스 · 보케리아 · 바르셀로나대성당 · 고딕지구 · 바르셀로나타 자유</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">시내로 돌아와 <strong>람블라스</strong> 산책로와 활기 찬 <strong>보케리아 시장</strong>, 고딕 양식의 <strong>바르셀로나 대성당</strong>·구시가 골목을 둘러봅니다. <strong>바르셀로나타</strong> 해변·항구 일대에서 자유시간을 가진 뒤, 출국 준비로 공항에 집결합니다.</p>
+                            <p class="schedule-desc">시내로 돌아와 <strong>람블라스</strong> 산책로와 활기 찬 <strong>보케리아 시장</strong>, 고딕 양식의 <strong>바르셀로나 대성당</strong>·구시가 골목을 둘러봅니다. <strong>바르셀로나타</strong> 해변·항구 일대에서 자유시간을 가진 뒤, 출국 준비로 공항에 집결합니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-slate-700 ring-slate-100"></div>
                             <h4 class="font-bold text-slate-800">BCN공항 · TW408 출국</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">바르셀로나 공항에서 <strong>TW408</strong> 귀국편에 탑승합니다. 기내식으로 저녁을 대신하니, 시내에서 가벼운 간식만 챙기셔도 됩니다. 입국·세관 서류는 안내문을 다시 확인해 주세요.</p>
+                            <p class="schedule-desc">바르셀로나 공항에서 <strong>TW408</strong> 귀국편에 탑승합니다. 기내식으로 저녁을 대신하니, 시내에서 가벼운 간식만 챙기셔도 됩니다. 입국·세관 서류는 안내문을 다시 확인해 주세요.</p>
                         </div>
+                    </div>
+                    <div class="schedule-thumbs grid sm:grid-cols-2 gap-3 mt-5 mb-1">
+                        <img src="assets/images/day8-montserrat.jpg" alt="몬세랏" class="schedule-thumb">
+                        <img src="assets/images/day8-rambla.jpg" alt="람블라스" class="schedule-thumb">
                     </div>
                     <p class="mt-5 text-right"><button type="button" onclick="changeMap('day8');document.getElementById('map-section').scrollIntoView({behavior:'smooth'})" class="text-xs font-bold text-tm hover:underline">이 날 동선 보기 →</button></p>
                 </div>
@@ -613,12 +627,12 @@
                         <div class="relative">
                             <div class="timeline-dot bg-tm ring-teal-100"></div>
                             <h4 class="font-bold text-slate-800">인천 도착 · 김포 이동 · 석식</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed">인천국제공항 도착 후 입국 수속을 마치고 김포공항으로 이동합니다. 공항식(석식)으로 여정의 마지막 식사를 함께합니다.</p>
+                            <p class="schedule-desc">인천국제공항 도착 후 입국 수속을 마치고 김포공항으로 이동합니다. 공항식(석식)으로 여정의 마지막 식사를 함께합니다.</p>
                         </div>
                         <div class="relative">
                             <div class="timeline-dot bg-slate-600 ring-slate-100"></div>
                             <h4 class="font-bold text-slate-800">OZ8995 김포 → 제주 · 서귀포 해산</h4>
-                            <p class="text-sm text-slate-600 mt-1 leading-relaxed"><strong>OZ8995</strong> 김포→제주 국내선으로 귀환한 뒤 서귀포에서 해산합니다. 수하물·기념품은 다시 한 번 확인하고, 안전하게 귀가해 주세요.</p>
+                            <p class="schedule-desc"><strong>OZ8995</strong> 김포→제주 국내선으로 귀환한 뒤 서귀포에서 해산합니다. 수하물·기념품은 다시 한 번 확인하고, 안전하게 귀가해 주세요.</p>
                         </div>
                     </div>
                     <p class="mt-5 text-right"><button type="button" onclick="changeMap('day9');document.getElementById('map-section').scrollIntoView({behavior:'smooth'})" class="text-xs font-bold text-tm hover:underline">이 날 동선 보기 →</button></p>
