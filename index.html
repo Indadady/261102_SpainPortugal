@@ -39,8 +39,28 @@
         }
         @media (max-width: 768px) { .hero-bg { background-attachment: scroll; } }
         #map { height: 440px; width: 100%; border-radius: 1rem; z-index: 10; }
-        @media (min-width: 1024px) { #map { height: 580px; } }
+        @media (min-width: 1024px) { #map { height: 560px; } }
         .map-wrap { position: relative; z-index: 0; }
+        .map-status-panel {
+            position: absolute; top: 12px; right: 12px; z-index: 450;
+            max-width: min(58vw, 280px); background: rgba(255,255,255,.94);
+            backdrop-filter: blur(8px); border-radius: 14px; padding: 10px 12px;
+            box-shadow: 0 8px 24px rgba(15,23,42,.14); border: 1px solid rgba(148,163,184,.35);
+            pointer-events: none;
+        }
+        .map-zoom-btns {
+            position: absolute; left: 12px; bottom: 14px; z-index: 450;
+            display: flex; flex-direction: column; gap: 6px;
+        }
+        .map-zoom-btns button {
+            width: 40px; height: 40px; border-radius: 12px; border: 1px solid #cbd5e1;
+            background: rgba(255,255,255,.96); color: #0f172a; font-size: 18px; font-weight: 800;
+            box-shadow: 0 4px 14px rgba(15,23,42,.12);
+        }
+        .map-zoom-btns button:active { transform: scale(.96); }
+        .leaflet-control-zoom { display: none !important; }
+        .video-frame { position: relative; width: 100%; padding-top: 56.25%; border-radius: 1rem; overflow: hidden; background: #0f172a; }
+        .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
         .custom-icon { background: transparent; border: none; }
         .map-pin-wrap { display: flex; flex-direction: column; align-items: center; }
         .map-pin-dot {
@@ -146,13 +166,14 @@
                     <a href="#home" class="px-3 py-2 text-sm font-bold text-slate-600 hover:text-tm hover:bg-slate-50 rounded-lg">홈</a>
                     <a href="#highlights" class="px-3 py-2 text-sm font-bold text-tm hover:bg-teal-50 rounded-lg">핵심포인트</a>
                     <a href="#flight" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-tm hover:bg-slate-50 rounded-lg">항공</a>
+                    <a href="#culture" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-tm hover:bg-slate-50 rounded-lg">인문학</a>
                     <a href="#map-section" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-tm hover:bg-slate-50 rounded-lg">동선</a>
                     <a href="#schedule" class="px-3 py-2 text-sm font-bold text-tm hover:bg-slate-50 rounded-lg">상세일정</a>
                     <a href="#hotel" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-tm hover:bg-slate-50 rounded-lg">숙소</a>
                     <a href="#smart-info" class="px-3 py-2 text-sm font-bold text-pink-600 hover:bg-pink-50 rounded-lg">현지정보</a>
                     <a href="#check" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-tm hover:bg-slate-50 rounded-lg">준비물</a>
+                    <a href="#promo-videos" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-tm hover:bg-slate-50 rounded-lg">홍보영상</a>
                     <a href="#contact" class="px-3 py-2 text-sm font-bold text-red-600 hover:bg-red-50 rounded-lg">비상연락망</a>
-                    <button type="button" onclick="window.print()" class="px-3 py-2 text-sm font-bold text-white bg-tm hover:bg-tm-dark rounded-lg shrink-0"><i class="fa-solid fa-print mr-1"></i>일정표 인쇄하기</button>
                 </div>
             </div>
             <button onclick="shareLink()" class="shrink-0 p-2 text-slate-500 hover:text-tm ml-2" title="공유하기"><i class="fa-solid fa-share-nodes text-xl"></i></button>
@@ -168,7 +189,7 @@
     <main>
         <section id="home" class="hero-bg min-h-[68vh] flex items-center justify-center text-center px-4 relative">
             <div class="animate-fade-in-up text-white z-10 w-full max-w-5xl">
-                <div class="mb-5"><img src="assets/images/urideul-logo.png" alt="우리들여행" class="h-10 md:h-12 mx-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.65)] bg-white/90 rounded-xl px-3 py-2"></div>
+                <div class="mb-5"><img src="assets/images/nuac-logo.png" alt="민주평화통일자문회의" class="h-12 md:h-16 mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)] bg-white/95 rounded-2xl px-4 py-3 object-contain max-w-[min(92vw,520px)]"></div>
                 <span class="bg-tm/90 px-5 py-2 rounded-full text-sm md:text-base font-bold mb-6 inline-block border border-white/20 shadow-lg">민주평화통일자문회의 서귀포시협의회</span>
                 <h1 class="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg font-[Nanum_Myeongjo] leading-tight">
                     스페인 · 포르투갈<br><span class="text-teal-200">문화교류 여정 가이드북</span>
@@ -245,12 +266,44 @@
             </div>
         </section>
 
+        <section id="culture" class="py-16 bg-gradient-to-b from-slate-50 to-white border-t border-slate-100">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="text-center mb-10">
+                    <span class="text-tm font-black tracking-widest text-xs uppercase">HUMANITIES</span>
+                    <h2 class="text-3xl font-bold text-slate-800 mt-2">스페인 · 포르투갈 인문학 노트</h2>
+                    <p class="text-slate-500 mt-2 text-sm max-w-2xl mx-auto">이번 일정에서 방문하는 도시와 유산을 중심으로, 현장에서 바로 떠올릴 수 있는 배경을 짧게 정리했습니다.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-5">
+                    <article class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
+                        <p class="text-xs font-bold text-tm mb-2">바르셀로나 · 몬세랏</p>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">가우디와 카탈루냐의 정체성</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">성가족성당·구엘공원·카사밀라 등은 19~20세기 카탈루냐 모더니즘의 상징입니다. 가우디는 자연 곡선과 빛·색을 건축에 끌어들여 ‘도시 자체가 예술’이 되게 했습니다. 몬세랏은 톱니 모양 암벽과 수도원으로, 카탈루냐인의 신앙·문화 구심점이기도 합니다.</p>
+                    </article>
+                    <article class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
+                        <p class="text-xs font-bold text-tm mb-2">포르투</p>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">도우루 강과 포트 와인의 도시</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">리베이라 지구와 돔 루이스 다리는 유네스코 세계유산 도시의 얼굴입니다. 상벤투 역의 아줄레주, 렐루 서점, 카르무 성당은 ‘타일과 책, 신앙’이 겹친 포르투갈 도시미학을 보여 줍니다. 포트 와인은 도우루 계곡에서 숙성·수출된 역사의 산물입니다.</p>
+                    </article>
+                    <article class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
+                        <p class="text-xs font-bold text-tm mb-2">파티마 · 리스본 · 신트라</p>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">순례·대항해·대서양의 끝</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">파티마는 20세기 성모 발현 전승으로 세계적 순례지입니다. 리스본의 벨렘탑·제로니모스·발견기념비는 대항해 시대의 출발점이고, 까보다로까는 ‘유럽 대륙의 서쪽 끝’으로 불립니다. 신트라 성은 왕실 여름별장으로 낭만주의 풍경을 남겼습니다.</p>
+                    </article>
+                    <article class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
+                        <p class="text-xs font-bold text-tm mb-2">세비야 · 코르도바 · 똘레도 · 마드리드</p>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">이슬람·기독교·유대 문화의 교차로</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">세비야 광장·대성당·히랄다는 안달루시아의 화려함과 역사 층위를 보여 줍니다. 코르도바 메스키타는 모스크에서 성당으로 이어진 공존의 건축이고, 똘레도는 ‘세 문화의 도시’로 불립니다. 마드리드 왕궁은 스페인 왕정의 공식 얼굴이며, Renfe 고속열차는 현대 스페인의 연결망을 상징합니다.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <section id="map-section" class="py-16 bg-white border-t border-slate-100">
             <div class="container mx-auto px-4 max-w-6xl">
                 <div class="text-center mb-8">
                     <span class="text-tm font-black tracking-widest text-xs uppercase">ROUTE MAP</span>
                     <h2 class="text-3xl font-bold text-slate-800 mt-2">스마트 여행동선</h2>
-                    <p class="text-slate-500 mt-2 text-sm max-w-2xl mx-auto">차량은 실제 도로(OSRM)로, 항공·고속열차는 점선으로 표시합니다. 아이콘은 진행 방향을 향합니다.</p>
+                    <p class="text-slate-500 mt-2 text-sm max-w-2xl mx-auto">일자별로는 현지 동선 중심으로 확대해 보여 줍니다. 차량은 실제 도로(OSRM), 항공·고속열차는 점선입니다.</p>
                 </div>
                 <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1 justify-start md:justify-center mb-5" id="map-controls">
                     <button type="button" onclick="changeMap('all')" class="map-tab-btn px-4 py-2 rounded-full border border-slate-300 bg-white text-slate-600 text-sm font-bold shrink-0">전체</button>
@@ -264,22 +317,32 @@
                     <button type="button" onclick="changeMap('day8')" class="map-tab-btn px-4 py-2 rounded-full border border-slate-300 bg-white text-slate-600 text-sm font-bold shrink-0">8일</button>
                     <button type="button" onclick="changeMap('day9')" class="map-tab-btn px-4 py-2 rounded-full border border-slate-300 bg-white text-slate-600 text-sm font-bold shrink-0">9일</button>
                 </div>
-                <div class="map-wrap border border-slate-200 rounded-2xl p-1 shadow-lg bg-white max-w-5xl mx-auto">
+                <div class="map-wrap border border-slate-200 rounded-2xl p-1 shadow-lg bg-white max-w-5xl mx-auto relative">
                     <div id="map" class="w-full rounded-xl"></div>
-                    <div id="map-status" class="absolute top-4 left-4 z-[400] bg-white/90 backdrop-blur px-3 py-1.5 rounded-xl shadow font-bold text-xs text-slate-700 pointer-events-none">
-                        <i class="fa-solid fa-route text-tm mr-1"></i><span id="map-status-text">실제 도로 동선</span>
+                    <div id="map-status" class="map-status-panel">
+                        <p class="text-[10px] font-bold text-tm mb-1 tracking-wide">현재 구간</p>
+                        <p class="font-bold text-xs text-slate-800 leading-snug"><i class="fa-solid fa-route text-tm mr-1"></i><span id="map-status-text">실제 도로 동선</span></p>
+                        <p id="map-hint" class="text-[11px] text-slate-500 mt-2 leading-snug">📍 1일차 동선</p>
+                    </div>
+                    <div class="map-zoom-btns">
+                        <button type="button" onclick="mapZoom(1)" aria-label="줌인">+</button>
+                        <button type="button" onclick="mapZoom(-1)" aria-label="줌아웃">−</button>
                     </div>
                 </div>
-                <p id="map-hint" class="text-center text-xs text-slate-500 mt-3">📍 1일차 동선</p>
             </div>
         </section>
 
         <section id="schedule" class="py-16 bg-slate-50 border-t border-slate-200">
             <div class="container mx-auto px-4 max-w-4xl">
-                <div class="mb-8 border-b border-slate-200 pb-6">
-                    <span class="text-tm font-black tracking-widest text-xs uppercase">SCHEDULE</span>
-                    <h2 class="text-3xl font-bold text-slate-800 mt-2">상세 일정표</h2>
-                    <p class="text-slate-500 mt-2 text-sm">안내 초안입니다. 항공기 연발착·현지 사정에 따라 변경될 수 있습니다.</p>
+                <div class="mb-8 border-b border-slate-200 pb-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                    <div>
+                        <span class="text-tm font-black tracking-widest text-xs uppercase">SCHEDULE</span>
+                        <h2 class="text-3xl font-bold text-slate-800 mt-2">상세 일정표</h2>
+                        <p class="text-slate-500 mt-2 text-sm">안내 초안입니다. 항공기 연발착·현지 사정에 따라 변경될 수 있습니다.</p>
+                    </div>
+                    <button type="button" onclick="window.print()" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-tm hover:bg-tm-dark shadow-sm shrink-0">
+                        <i class="fa-solid fa-print"></i>일정표 인쇄하기
+                    </button>
                 </div>
                 <div class="flex gap-2 overflow-x-auto no-scrollbar pb-3 mb-6">
                     <button type="button" data-day="day1" onclick="showDayTab('day1')" class="tab-btn active px-4 py-2 rounded-full border border-tm bg-tm text-white text-sm font-bold shadow-md shrink-0">1일</button>
@@ -633,6 +696,32 @@
                     <div class="bg-yellow-50 p-8 rounded-3xl border border-yellow-200 flex flex-col shadow-sm">
                         <h3 class="font-bold text-xl mb-6 text-yellow-800"><i class="fa-solid fa-pen-clip mr-2"></i>자유 메모장</h3>
                         <textarea id="travel-memo" class="flex-1 w-full min-h-[250px] bg-white p-5 rounded-2xl border border-yellow-300 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm leading-relaxed" placeholder="여권 번호, 좌석, 쇼핑 메모 등 (자동 저장)"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="promo-videos" class="py-16 bg-slate-900 text-white border-t border-slate-800">
+            <div class="container mx-auto px-4 max-w-5xl">
+                <div class="text-center mb-10">
+                    <span class="text-teal-300 font-black tracking-widest text-xs uppercase">OFFICIAL FILMS</span>
+                    <h2 class="text-3xl font-bold mt-2">스페인 · 포르투갈 공식 홍보영상</h2>
+                    <p class="text-slate-300 mt-2 text-sm">여행 전 짐 챙기기 후, 현지 분위기를 미리 느껴 보세요. (공식 관광 채널)</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white/5 border border-white/10 rounded-3xl p-4 md:p-5">
+                        <h3 class="font-bold text-lg mb-1">Spain in two minutes</h3>
+                        <p class="text-xs text-slate-400 mb-4">공식 채널 Spain · 스페인 관광청</p>
+                        <div class="video-frame">
+                            <iframe src="https://www.youtube-nocookie.com/embed/PNK0HCyUx8Y" title="Spain in two minutes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                        </div>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-3xl p-4 md:p-5">
+                        <h3 class="font-bold text-lg mb-1">Time to inspire</h3>
+                        <p class="text-xs text-slate-400 mb-4">공식 채널 Visit Portugal · 포르투갈 관광청</p>
+                        <div class="video-frame">
+                            <iframe src="https://www.youtube-nocookie.com/embed/ZvDWql6QsPU" title="Visit Portugal - Time to inspire" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1096,16 +1185,16 @@
             rambla: { c:[41.3810,2.1730], t:'람블라스', col:'#db2777', i:'🛍️' }
         };
         const mapHints = {
-            all: '✈️ 전체: 제주↔김포↔인천 · ICN↔BCN · BCN↔OPO · 귀국편',
-            day1: '📍 1일: 제주→김포→인천→바르셀로나·호텔',
-            day2: '📍 2일: 가우디 동선 → BCN→포르투',
-            day3: '📍 3일: 포르투 시내·와이너리',
-            day4: '📍 4일: 파티마→리스본·신트라·벨렘',
-            day5: '📍 5일: 리스본→세비야 시내',
-            day6: '📍 6일: 세비야→코르도바→똘레도',
-            day7: '📍 7일: 똘레도→마드리드→Renfe→바르셀로나',
-            day8: '📍 8일: 몬세랏·시내 → TW408 출국',
-            day9: '📍 9일: 인천→김포→제주'
+            all: '전체 여정: 제주↔인천 · ICN↔BCN · BCN↔OPO · 귀국',
+            day1: '도착 후: 바르셀로나 공항 → 호텔 이동',
+            day2: '바르셀로나 시내(가우디) 후 포르투 연결편',
+            day3: '포르투 시내 · 리베이라 · 와이너리',
+            day4: '파티마 → 리스본 · 신트라 · 벨렘',
+            day5: '세비야 도착 후 시내 명소',
+            day6: '코르도바 메스키타 → 똘레도',
+            day7: '마드리드 왕궁 · Renfe → 바르셀로나',
+            day8: '몬세랏 · 시내 후 TW408 출국',
+            day9: '인천 → 김포 → 제주 귀국'
         };
         const routes = {
             all: {
@@ -1123,8 +1212,8 @@
             },
             day1: {
                 p: ['cju','gmp','icn','bcn','hotel_bcn1'],
-                zoom: ['icn','bcn','hotel_bcn1'],
-                maxZoom: 5,
+                zoom: ['bcn','hotel_bcn1'],
+                maxZoom: 13,
                 legs: [
                     { from:'cju', to:'gmp', mode:'air', color:'#64748b', label:'OZ8900' },
                     { from:'gmp', to:'icn', mode:'road', color:'#0A7A86' },
@@ -1134,8 +1223,8 @@
             },
             day2: {
                 p: ['hotel_bcn1','sagrada','guell','casa','bcn','opo','hotel_porto'],
-                zoom: ['hotel_bcn1','sagrada','guell','casa','bcn'],
-                maxZoom: 12,
+                zoom: ['hotel_bcn1','sagrada','guell','casa'],
+                maxZoom: 14,
                 legs: [
                     { from:'hotel_bcn1', to:'sagrada', mode:'road', color:'#d97706' },
                     { from:'sagrada', to:'guell', mode:'road', color:'#059669' },
@@ -1148,7 +1237,7 @@
             day3: {
                 p: ['hotel_porto','lello','ribeira'],
                 zoom: ['hotel_porto','lello','ribeira'],
-                maxZoom: 14,
+                maxZoom: 15,
                 legs: [
                     { from:'hotel_porto', to:'lello', mode:'road', color:'#7c3aed' },
                     { from:'lello', to:'ribeira', mode:'road', color:'#0ea5e9' },
@@ -1157,8 +1246,8 @@
             },
             day4: {
                 p: ['hotel_porto','fatima','caboca','sintra','belem','lisbon'],
-                zoom: ['hotel_porto','fatima','caboca','belem','lisbon'],
-                maxZoom: 8,
+                zoom: ['fatima','caboca','sintra','belem','lisbon'],
+                maxZoom: 10,
                 legs: [
                     { from:'hotel_porto', to:'fatima', mode:'road', color:'#8b5cf6' },
                     { from:'fatima', to:'caboca', mode:'road', color:'#0284c7' },
@@ -1169,8 +1258,8 @@
             },
             day5: {
                 p: ['lisbon','plaza','seville','hotel_sev'],
-                zoom: ['lisbon','plaza','seville'],
-                maxZoom: 7,
+                zoom: ['plaza','seville','hotel_sev'],
+                maxZoom: 14,
                 legs: [
                     { from:'lisbon', to:'plaza', mode:'road', color:'#dc2626' },
                     { from:'plaza', to:'seville', mode:'road', color:'#b91c1c' },
@@ -1179,8 +1268,8 @@
             },
             day6: {
                 p: ['hotel_sev','mezquita','toledo'],
-                zoom: ['hotel_sev','mezquita','toledo'],
-                maxZoom: 7,
+                zoom: ['mezquita','toledo'],
+                maxZoom: 9,
                 legs: [
                     { from:'hotel_sev', to:'mezquita', mode:'road', color:'#d97706' },
                     { from:'mezquita', to:'toledo', mode:'road', color:'#475569' }
@@ -1188,8 +1277,8 @@
             },
             day7: {
                 p: ['toledo','palace','atocha','sants','hotel_bcn2'],
-                zoom: ['toledo','palace','atocha','sants'],
-                maxZoom: 6,
+                zoom: ['palace','atocha'],
+                maxZoom: 13,
                 legs: [
                     { from:'toledo', to:'palace', mode:'road', color:'#e11d48' },
                     { from:'palace', to:'atocha', mode:'road', color:'#4f46e5' },
@@ -1199,8 +1288,8 @@
             },
             day8: {
                 p: ['hotel_bcn2','montserrat','rambla','bcn','icn'],
-                zoom: ['hotel_bcn2','montserrat','rambla','bcn'],
-                maxZoom: 9,
+                zoom: ['montserrat','rambla','hotel_bcn2'],
+                maxZoom: 11,
                 legs: [
                     { from:'hotel_bcn2', to:'montserrat', mode:'road', color:'#059669' },
                     { from:'montserrat', to:'rambla', mode:'road', color:'#db2777' },
@@ -1210,8 +1299,8 @@
             },
             day9: {
                 p: ['icn','gmp','cju'],
-                zoom: ['icn','gmp','cju'],
-                maxZoom: 7,
+                zoom: ['icn','gmp'],
+                maxZoom: 11,
                 legs: [
                     { from:'icn', to:'gmp', mode:'road', color:'#0A7A86' },
                     { from:'gmp', to:'cju', mode:'air', color:'#64748b', label:'OZ8995' }
@@ -1356,13 +1445,13 @@
             const legs = routeData.legs;
             setMapStatus('실제 도로 동선을 불러오는 중...');
             const zoomKeys = routeData.zoom || routeData.p;
-            let bounds = L.latLngBounds(zoomKeys.map(key => spots[key].c));
-            map.fitBounds(bounds, { padding: [50, 50], maxZoom: routeData.maxZoom || 13 });
+            const bounds = L.latLngBounds(zoomKeys.map(key => spots[key].c));
+            map.fitBounds(bounds, { padding: [36, 36], maxZoom: routeData.maxZoom || 13 });
             setTimeout(() => map.invalidateSize(), 120);
             const paths = await Promise.all(legs.map(leg => resolveLegPath(leg)));
             if (seq !== mapDrawSeq) return;
-            paths.forEach((path, i) => { if (legs[i].mode === 'air' || legs[i].mode === 'train') return; path.forEach(pt => bounds.extend(pt)); });
-            map.fitBounds(bounds, { padding: [50, 50], maxZoom: routeData.maxZoom || 13 });
+            // 일자별 화면은 zoom 키 기준으로만 확대해, 장거리 구간이 지도를 너무 작게 만들지 않음
+            map.fitBounds(bounds, { padding: [36, 36], maxZoom: routeData.maxZoom || 13 });
             await new Promise(r => setTimeout(r, 280));
             if (seq !== mapDrawSeq) return;
             const ghost = L.polyline(paths.flat(), { color:'#94a3b8', weight:4, opacity:0.22, lineJoin:'round', lineCap:'round' }).addTo(map);
@@ -1406,11 +1495,17 @@
             if (bus && map.hasLayer(bus)) map.removeLayer(bus);
             mapLayers = mapLayers.filter(layer => layer !== bus);
             if (activeBus === bus) activeBus = null;
+            map.fitBounds(bounds, { padding: [36, 36], maxZoom: routeData.maxZoom || 13 });
             setTimeout(() => map.invalidateSize(), 160);
+        }
+        function mapZoom(delta) {
+            if (!map) return;
+            if (delta > 0) map.zoomIn();
+            else map.zoomOut();
         }
         function initMap() {
             if (map || typeof L === 'undefined') return;
-            map = L.map('map', { scrollWheelZoom: false });
+            map = L.map('map', { scrollWheelZoom: false, zoomControl: false });
             L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
                 maxZoom: 19, attribution: 'Tiles &copy; Esri'
             }).addTo(map);
