@@ -530,9 +530,18 @@
                     <p class="text-sm text-slate-500 mt-2">안내 초안 · 일부 도시는 수배 진행 중이며 일급호텔 또는 동급으로 안내합니다.</p>
                 </div>
                 <div class="space-y-6">
-                    <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden shadow-sm md:flex">
-                        <img src="assets/images/hotel.jpg" alt="Hotel Acta Sant Just" class="w-full md:w-72 h-52 md:h-auto object-cover">
-                        <div class="p-6 md:p-8 flex-1">
+                    <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
+                        <div class="grid grid-cols-2">
+                            <div class="relative">
+                                <img src="assets/images/hotel-acta-ext.jpg" alt="Hotel Acta Sant Just 전경" class="w-full h-44 md:h-56 object-cover">
+                                <span class="absolute bottom-2 left-2 bg-black/55 text-white text-[11px] font-bold px-2 py-1 rounded">호텔 전경</span>
+                            </div>
+                            <div class="relative">
+                                <img src="assets/images/hotel-acta-room.jpg" alt="Hotel Acta Sant Just 객실" class="w-full h-44 md:h-56 object-cover">
+                                <span class="absolute bottom-2 left-2 bg-black/55 text-white text-[11px] font-bold px-2 py-1 rounded">객실</span>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8">
                             <p class="text-xs font-bold text-tm mb-1">1박 · 바르셀로나(산트주스트)</p>
                             <h3 class="text-xl font-bold text-slate-800">Hotel Acta Sant Just ★★★★</h3>
                             <p class="text-sm text-slate-500 mt-1">또는 동급 · FIRST CLASS 수배 OK</p>
@@ -541,13 +550,25 @@
                             <a href="https://www.actahotels.com/en/hotels/hotel-acta-sant-just" target="_blank" rel="noopener" class="inline-block mt-3 text-sm font-bold text-tm hover:underline">공식 사이트 →</a>
                         </div>
                     </div>
-                    <div class="bg-slate-50 rounded-3xl border border-slate-200 p-6 md:p-8">
-                        <p class="text-xs font-bold text-tm mb-1">2박 · 포르투</p>
-                        <h3 class="text-xl font-bold text-slate-800">HF Ipanema Park ★★★★★</h3>
-                        <p class="text-sm text-slate-500 mt-1">또는 동급</p>
-                        <p class="text-sm text-slate-600 mt-4">R. de Serralves 124, 4150-702 Porto</p>
-                        <p class="text-sm text-slate-600">+351 22 532 2121</p>
-                        <a href="https://www.hfhotels.com/en/hotels-en/hf-ipanema-park-en/" target="_blank" rel="noopener" class="inline-block mt-3 text-sm font-bold text-tm hover:underline">공식 사이트 →</a>
+                    <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
+                        <div class="grid grid-cols-2">
+                            <div class="relative">
+                                <img src="assets/images/hotel-ipanema-ext.jpg" alt="HF Ipanema Park 전경" class="w-full h-44 md:h-56 object-cover">
+                                <span class="absolute bottom-2 left-2 bg-black/55 text-white text-[11px] font-bold px-2 py-1 rounded">호텔 전경</span>
+                            </div>
+                            <div class="relative">
+                                <img src="assets/images/hotel-ipanema-room.jpg" alt="HF Ipanema Park 객실" class="w-full h-44 md:h-56 object-cover">
+                                <span class="absolute bottom-2 left-2 bg-black/55 text-white text-[11px] font-bold px-2 py-1 rounded">객실</span>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <p class="text-xs font-bold text-tm mb-1">2박 · 포르투</p>
+                            <h3 class="text-xl font-bold text-slate-800">HF Ipanema Park ★★★★★</h3>
+                            <p class="text-sm text-slate-500 mt-1">또는 동급</p>
+                            <p class="text-sm text-slate-600 mt-4">R. de Serralves 124, 4150-702 Porto</p>
+                            <p class="text-sm text-slate-600">+351 22 532 2121</p>
+                            <a href="https://www.hfhotels.com/en/hotels-en/hf-ipanema-park-en/" target="_blank" rel="noopener" class="inline-block mt-3 text-sm font-bold text-tm hover:underline">공식 사이트 →</a>
+                        </div>
                     </div>
                     <div class="grid md:grid-cols-2 gap-4">
                         <div class="bg-white rounded-2xl border border-dashed border-slate-300 p-5">
@@ -1186,14 +1207,14 @@
         };
         const mapHints = {
             all: '전체 여정: 제주↔인천 · ICN↔BCN · BCN↔OPO · 귀국',
-            day1: '도착 후: 바르셀로나 공항 → 호텔 이동',
-            day2: '바르셀로나 시내(가우디) 후 포르투 연결편',
+            day1: '제주 출발 → 김포·인천 → 바르셀로나 호텔',
+            day2: '바르셀로나(가우디) → 포르투 연결편',
             day3: '포르투 시내 · 리베이라 · 와이너리',
-            day4: '파티마 → 리스본 · 신트라 · 벨렘',
-            day5: '세비야 도착 후 시내 명소',
-            day6: '코르도바 메스키타 → 똘레도',
-            day7: '마드리드 왕궁 · Renfe → 바르셀로나',
-            day8: '몬세랏 · 시내 후 TW408 출국',
+            day4: '포르투 → 파티마 → 리스본·신트라·벨렘',
+            day5: '리스본 → 세비야 시내',
+            day6: '세비야 → 코르도바 → 똘레도',
+            day7: '똘레도 → 마드리드 → Renfe → 바르셀로나',
+            day8: '몬세랏 · 시내 → TW408 출국',
             day9: '인천 → 김포 → 제주 귀국'
         };
         const routes = {
@@ -1201,109 +1222,117 @@
                 p: ['cju','gmp','icn','bcn','opo'],
                 zoom: ['cju','icn','bcn','opo'],
                 maxZoom: 4,
+                follow: true,
                 legs: [
-                    { from:'cju', to:'gmp', mode:'air', color:'#64748b', label:'OZ8900' },
-                    { from:'gmp', to:'icn', mode:'road', color:'#0A7A86', label:'김포→인천 버스' },
-                    { from:'icn', to:'bcn', mode:'air', color:'#64748b', label:'TW402' },
-                    { from:'bcn', to:'opo', mode:'air', color:'#64748b', label:'VY1182' },
-                    { from:'bcn', to:'icn', mode:'air', color:'#94a3b8', label:'TW408 귀국' },
-                    { from:'gmp', to:'cju', mode:'air', color:'#94a3b8', label:'OZ8995' }
+                    { from:'cju', to:'gmp', mode:'air', color:'#64748b', label:'OZ8900', maxZoom: 8 },
+                    { from:'gmp', to:'icn', mode:'road', color:'#0A7A86', label:'김포→인천 버스', maxZoom: 11 },
+                    { from:'icn', to:'bcn', mode:'air', color:'#64748b', label:'TW402', maxZoom: 4 },
+                    { from:'bcn', to:'opo', mode:'air', color:'#64748b', label:'VY1182', maxZoom: 7 }
                 ]
             },
             day1: {
                 p: ['cju','gmp','icn','bcn','hotel_bcn1'],
-                zoom: ['bcn','hotel_bcn1'],
-                maxZoom: 13,
+                zoom: ['cju','gmp','icn'],
+                maxZoom: 8,
+                follow: true,
                 legs: [
-                    { from:'cju', to:'gmp', mode:'air', color:'#64748b', label:'OZ8900' },
-                    { from:'gmp', to:'icn', mode:'road', color:'#0A7A86' },
-                    { from:'icn', to:'bcn', mode:'air', color:'#64748b', label:'TW402' },
-                    { from:'bcn', to:'hotel_bcn1', mode:'road', color:'#0A7A86' }
+                    { from:'cju', to:'gmp', mode:'air', color:'#64748b', label:'OZ8900 제주→김포', maxZoom: 8 },
+                    { from:'gmp', to:'icn', mode:'road', color:'#0A7A86', label:'김포→인천 전용버스', maxZoom: 11 },
+                    { from:'icn', to:'bcn', mode:'air', color:'#64748b', label:'TW402 인천→바르셀로나', maxZoom: 4 },
+                    { from:'bcn', to:'hotel_bcn1', mode:'road', color:'#0A7A86', label:'공항→호텔', maxZoom: 13 }
                 ]
             },
             day2: {
                 p: ['hotel_bcn1','sagrada','guell','casa','bcn','opo','hotel_porto'],
                 zoom: ['hotel_bcn1','sagrada','guell','casa'],
                 maxZoom: 14,
+                follow: true,
                 legs: [
-                    { from:'hotel_bcn1', to:'sagrada', mode:'road', color:'#d97706' },
-                    { from:'sagrada', to:'guell', mode:'road', color:'#059669' },
-                    { from:'guell', to:'casa', mode:'road', color:'#db2777' },
-                    { from:'casa', to:'bcn', mode:'road', color:'#64748b' },
-                    { from:'bcn', to:'opo', mode:'air', color:'#64748b', label:'VY1182' },
-                    { from:'opo', to:'hotel_porto', mode:'road', color:'#0A7A86' }
+                    { from:'hotel_bcn1', to:'sagrada', mode:'road', color:'#d97706', maxZoom: 13 },
+                    { from:'sagrada', to:'guell', mode:'road', color:'#059669', maxZoom: 14 },
+                    { from:'guell', to:'casa', mode:'road', color:'#db2777', maxZoom: 14 },
+                    { from:'casa', to:'bcn', mode:'road', color:'#64748b', maxZoom: 12 },
+                    { from:'bcn', to:'opo', mode:'air', color:'#64748b', label:'VY1182', maxZoom: 7 },
+                    { from:'opo', to:'hotel_porto', mode:'road', color:'#0A7A86', maxZoom: 13 }
                 ]
             },
             day3: {
                 p: ['hotel_porto','lello','ribeira'],
                 zoom: ['hotel_porto','lello','ribeira'],
                 maxZoom: 15,
+                follow: true,
                 legs: [
-                    { from:'hotel_porto', to:'lello', mode:'road', color:'#7c3aed' },
-                    { from:'lello', to:'ribeira', mode:'road', color:'#0ea5e9' },
-                    { from:'ribeira', to:'hotel_porto', mode:'road', color:'#0A7A86' }
+                    { from:'hotel_porto', to:'lello', mode:'road', color:'#7c3aed', maxZoom: 15 },
+                    { from:'lello', to:'ribeira', mode:'road', color:'#0ea5e9', maxZoom: 15 },
+                    { from:'ribeira', to:'hotel_porto', mode:'road', color:'#0A7A86', maxZoom: 15 }
                 ]
             },
             day4: {
                 p: ['hotel_porto','fatima','caboca','sintra','belem','lisbon'],
-                zoom: ['fatima','caboca','sintra','belem','lisbon'],
-                maxZoom: 10,
+                zoom: ['hotel_porto','fatima'],
+                maxZoom: 9,
+                follow: true,
                 legs: [
-                    { from:'hotel_porto', to:'fatima', mode:'road', color:'#8b5cf6' },
-                    { from:'fatima', to:'caboca', mode:'road', color:'#0284c7' },
-                    { from:'caboca', to:'sintra', mode:'road', color:'#b45309' },
-                    { from:'sintra', to:'belem', mode:'road', color:'#ca8a04' },
-                    { from:'belem', to:'lisbon', mode:'road', color:'#0A7A86' }
+                    { from:'hotel_porto', to:'fatima', mode:'road', color:'#8b5cf6', maxZoom: 9 },
+                    { from:'fatima', to:'caboca', mode:'road', color:'#0284c7', maxZoom: 9 },
+                    { from:'caboca', to:'sintra', mode:'road', color:'#b45309', maxZoom: 12 },
+                    { from:'sintra', to:'belem', mode:'road', color:'#ca8a04', maxZoom: 12 },
+                    { from:'belem', to:'lisbon', mode:'road', color:'#0A7A86', maxZoom: 13 }
                 ]
             },
             day5: {
                 p: ['lisbon','plaza','seville','hotel_sev'],
-                zoom: ['plaza','seville','hotel_sev'],
-                maxZoom: 14,
+                zoom: ['lisbon','plaza'],
+                maxZoom: 8,
+                follow: true,
                 legs: [
-                    { from:'lisbon', to:'plaza', mode:'road', color:'#dc2626' },
-                    { from:'plaza', to:'seville', mode:'road', color:'#b91c1c' },
-                    { from:'seville', to:'hotel_sev', mode:'road', color:'#0A7A86' }
+                    { from:'lisbon', to:'plaza', mode:'road', color:'#dc2626', label:'리스본→세비야', maxZoom: 8 },
+                    { from:'plaza', to:'seville', mode:'road', color:'#b91c1c', maxZoom: 14 },
+                    { from:'seville', to:'hotel_sev', mode:'road', color:'#0A7A86', maxZoom: 15 }
                 ]
             },
             day6: {
                 p: ['hotel_sev','mezquita','toledo'],
-                zoom: ['mezquita','toledo'],
+                zoom: ['hotel_sev','mezquita'],
                 maxZoom: 9,
+                follow: true,
                 legs: [
-                    { from:'hotel_sev', to:'mezquita', mode:'road', color:'#d97706' },
-                    { from:'mezquita', to:'toledo', mode:'road', color:'#475569' }
+                    { from:'hotel_sev', to:'mezquita', mode:'road', color:'#d97706', label:'세비야→코르도바', maxZoom: 9 },
+                    { from:'mezquita', to:'toledo', mode:'road', color:'#475569', label:'코르도바→똘레도', maxZoom: 8 }
                 ]
             },
             day7: {
                 p: ['toledo','palace','atocha','sants','hotel_bcn2'],
-                zoom: ['palace','atocha'],
-                maxZoom: 13,
+                zoom: ['toledo','palace'],
+                maxZoom: 10,
+                follow: true,
                 legs: [
-                    { from:'toledo', to:'palace', mode:'road', color:'#e11d48' },
-                    { from:'palace', to:'atocha', mode:'road', color:'#4f46e5' },
-                    { from:'atocha', to:'sants', mode:'train', color:'#6366f1', label:'Renfe' },
-                    { from:'sants', to:'hotel_bcn2', mode:'road', color:'#0A7A86' }
+                    { from:'toledo', to:'palace', mode:'road', color:'#e11d48', maxZoom: 10 },
+                    { from:'palace', to:'atocha', mode:'road', color:'#4f46e5', maxZoom: 13 },
+                    { from:'atocha', to:'sants', mode:'train', color:'#6366f1', label:'Renfe', maxZoom: 6 },
+                    { from:'sants', to:'hotel_bcn2', mode:'road', color:'#0A7A86', maxZoom: 13 }
                 ]
             },
             day8: {
                 p: ['hotel_bcn2','montserrat','rambla','bcn','icn'],
-                zoom: ['montserrat','rambla','hotel_bcn2'],
+                zoom: ['hotel_bcn2','montserrat'],
                 maxZoom: 11,
+                follow: true,
                 legs: [
-                    { from:'hotel_bcn2', to:'montserrat', mode:'road', color:'#059669' },
-                    { from:'montserrat', to:'rambla', mode:'road', color:'#db2777' },
-                    { from:'rambla', to:'bcn', mode:'road', color:'#64748b' },
-                    { from:'bcn', to:'icn', mode:'air', color:'#64748b', label:'TW408' }
+                    { from:'hotel_bcn2', to:'montserrat', mode:'road', color:'#059669', maxZoom: 11 },
+                    { from:'montserrat', to:'rambla', mode:'road', color:'#db2777', maxZoom: 11 },
+                    { from:'rambla', to:'bcn', mode:'road', color:'#64748b', maxZoom: 12 },
+                    { from:'bcn', to:'icn', mode:'air', color:'#64748b', label:'TW408', maxZoom: 4 }
                 ]
             },
             day9: {
                 p: ['icn','gmp','cju'],
                 zoom: ['icn','gmp'],
                 maxZoom: 11,
+                follow: true,
                 legs: [
-                    { from:'icn', to:'gmp', mode:'road', color:'#0A7A86' },
-                    { from:'gmp', to:'cju', mode:'air', color:'#64748b', label:'OZ8995' }
+                    { from:'icn', to:'gmp', mode:'road', color:'#0A7A86', maxZoom: 11 },
+                    { from:'gmp', to:'cju', mode:'air', color:'#64748b', label:'OZ8995', maxZoom: 7 }
                 ]
             }
         };
@@ -1352,28 +1381,45 @@
             mapLayers.forEach(layer => { if (layer._aborted !== undefined) layer._aborted = true; map.removeLayer(layer); });
             mapLayers = [];
         }
+        function pathMetres(path) {
+            let total = 0;
+            for (let i = 1; i < path.length; i++) total += L.latLng(path[i - 1]).distanceTo(L.latLng(path[i]));
+            return total;
+        }
         async function roadPath(pts) {
             const key = pts.map(p => p.join(',')).join('|');
             if (osrmCache[key]) return osrmCache[key];
+            const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+            const timer = ctrl ? setTimeout(() => ctrl.abort(), 10000) : null;
             try {
                 const coords = pts.map(pt => `${pt[1]},${pt[0]}`).join(';');
-                const res = await fetch(`https://router.project-osrm.org/route/v1/driving/${coords}?overview=full&geometries=geojson`);
+                const res = await fetch(`https://router.project-osrm.org/route/v1/driving/${coords}?overview=full&geometries=geojson`, ctrl ? { signal: ctrl.signal } : undefined);
                 const data = await res.json();
                 if (data.code === 'Ok' && data.routes && data.routes[0]) {
                     const path = data.routes[0].geometry.coordinates.map(([lng, lat]) => [lat, lng]);
-                    osrmCache[key] = path;
-                    return path;
+                    if (path.length >= 3) {
+                        osrmCache[key] = path;
+                        return path;
+                    }
                 }
             } catch (e) {}
+            finally { if (timer) clearTimeout(timer); }
+            // OSRM 실패·단절 시에도 직선 점프가 아니라 완만한 곡선으로 이어 줌
+            if (pts.length >= 2) return curvePath(pts[0], pts[pts.length - 1], 36);
             return pts;
         }
-        function lineDuration(pixelLength, routeKey, mode) {
+        function lineDuration(pixelLength, routeKey, mode, path) {
             const mobile = isMobileView(), allView = routeKey === 'all';
             const min = mobile ? (allView ? 1600 : 2800) : (allView ? 900 : 1400);
-            const max = mobile ? (allView ? 2800 : 5600) : (allView ? 1800 : 2800);
+            const max = mobile ? (allView ? 3200 : 5600) : (allView ? 2200 : 3200);
             const pxPerMs = mobile ? (allView ? 0.22 : 0.12) : 0.28;
             let ms = Math.max(min, Math.min(max, pixelLength / pxPerMs));
-            if (mode === 'air' || mode === 'train') ms = Math.min(ms, mobile ? 2800 : 1600);
+            if ((mode === 'air' || mode === 'train') && path && path.length >= 2) {
+                const km = pathMetres(path) / 1000;
+                const airMin = mobile ? 2600 : 1600;
+                const airMax = mobile ? (km > 4000 ? 5600 : 4200) : (km > 4000 ? 3600 : 2600);
+                ms = Math.max(airMin, Math.min(airMax, km * (mobile ? 0.55 : 0.35)));
+            }
             return ms;
         }
         function whenPathReady(polyline) {
@@ -1405,7 +1451,7 @@
                 }, ms + 40);
             });
         }
-        function moveMarkerAlong(marker, latlngs, duration, mode) {
+        function moveMarkerAlong(marker, latlngs, duration, mode, followCam) {
             return new Promise(resolve => {
                 if (!marker || !latlngs || latlngs.length < 2) { resolve(); return; }
                 const dists = [0]; let total = 0;
@@ -1414,6 +1460,7 @@
                 applyHeading(marker, latlngs[0], latlngs[1], mode);
                 const start = performance.now();
                 const ease = t => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;
+                let lastPan = 0;
                 function frame(now) {
                     if (marker._aborted) { resolve(); return; }
                     const t = Math.min(1, (now - start) / duration);
@@ -1422,8 +1469,14 @@
                     const a = latlngs[i-1], b = latlngs[Math.min(i, latlngs.length-1)];
                     const span = (dists[i] - dists[i-1]) || 1;
                     const f = (target - dists[i-1]) / span;
-                    marker.setLatLng([a[0]+(b[0]-a[0])*f, a[1]+(b[1]-a[1])*f]);
+                    const ll = [a[0]+(b[0]-a[0])*f, a[1]+(b[1]-a[1])*f];
+                    marker.setLatLng(ll);
                     applyHeading(marker, a, b, mode);
+                    // 장거리 항공은 기수를 따라 카메라가 같이 이동해 동선이 끊기지 않게
+                    if (followCam && map && now - lastPan > 80) {
+                        map.panTo(ll, { animate: false });
+                        lastPan = now;
+                    }
                     if (t < 1) requestAnimationFrame(frame); else resolve();
                 }
                 requestAnimationFrame(frame);
@@ -1431,8 +1484,43 @@
         }
         async function resolveLegPath(leg) {
             const from = spots[leg.from].c, to = spots[leg.to].c;
-            if (leg.mode === 'air' || leg.mode === 'train') return [from, to];
+            if (leg.mode === 'air' || leg.mode === 'train') {
+                const km = L.latLng(from).distanceTo(L.latLng(to)) / 1000;
+                const steps = leg.mode === 'air' ? (km > 3000 ? 120 : 72) : 48;
+                return curvePath(from, to, steps);
+            }
             return await roadPath([from, to]);
+        }
+        function curvePath(a, b, steps) {
+            // 대권(항공)·완만한 곡선(열차)으로 긴 구간이 끊기지 않게 보간
+            const lat1 = a[0] * Math.PI / 180, lon1 = a[1] * Math.PI / 180;
+            const lat2 = b[0] * Math.PI / 180, lon2 = b[1] * Math.PI / 180;
+            const d = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin((lat2-lat1)/2),2) + Math.cos(lat1)*Math.cos(lat2)*Math.pow(Math.sin((lon2-lon1)/2),2)));
+            if (!isFinite(d) || d < 1e-6) return [a, b];
+            const out = [];
+            for (let i = 0; i <= steps; i++) {
+                const f = i / steps;
+                const A = Math.sin((1-f)*d) / Math.sin(d);
+                const B = Math.sin(f*d) / Math.sin(d);
+                const x = A*Math.cos(lat1)*Math.cos(lon1) + B*Math.cos(lat2)*Math.cos(lon2);
+                const y = A*Math.cos(lat1)*Math.sin(lon1) + B*Math.cos(lat2)*Math.sin(lon2);
+                const z = A*Math.sin(lat1) + B*Math.sin(lat2);
+                const lat = Math.atan2(z, Math.sqrt(x*x + y*y));
+                const lon = Math.atan2(y, x);
+                out.push([lat * 180 / Math.PI, lon * 180 / Math.PI]);
+            }
+            return out;
+        }
+        function fitPath(path, maxZoom) {
+            return new Promise(resolve => {
+                if (!map || !path || path.length < 1) { resolve(); return; }
+                const b = L.latLngBounds(path);
+                let done = false;
+                const finish = () => { if (done) return; done = true; map.off('moveend', finish); resolve(); };
+                map.once('moveend', finish);
+                map.fitBounds(b.pad(0.2), { animate: true, duration: 0.75, maxZoom: maxZoom || 13, padding: [44, 44] });
+                setTimeout(finish, 900);
+            });
         }
         async function drawMap(routeKey) {
             if (!map) return;
@@ -1443,19 +1531,24 @@
             const hintEl = document.getElementById('map-hint');
             if (hintEl) hintEl.textContent = hint;
             const legs = routeData.legs;
-            setMapStatus('실제 도로 동선을 불러오는 중...');
+            setMapStatus('동선을 불러오는 중...');
             const zoomKeys = routeData.zoom || routeData.p;
-            const bounds = L.latLngBounds(zoomKeys.map(key => spots[key].c));
-            map.fitBounds(bounds, { padding: [36, 36], maxZoom: routeData.maxZoom || 13 });
+            const overview = L.latLngBounds(zoomKeys.map(key => spots[key].c));
+            map.fitBounds(overview, { padding: [36, 36], maxZoom: routeData.maxZoom || 13 });
             setTimeout(() => map.invalidateSize(), 120);
             const paths = await Promise.all(legs.map(leg => resolveLegPath(leg)));
             if (seq !== mapDrawSeq) return;
-            // 일자별 화면은 zoom 키 기준으로만 확대해, 장거리 구간이 지도를 너무 작게 만들지 않음
-            map.fitBounds(bounds, { padding: [36, 36], maxZoom: routeData.maxZoom || 13 });
-            await new Promise(r => setTimeout(r, 280));
-            if (seq !== mapDrawSeq) return;
-            const ghost = L.polyline(paths.flat(), { color:'#94a3b8', weight:4, opacity:0.22, lineJoin:'round', lineCap:'round' }).addTo(map);
-            mapLayers.push(ghost);
+
+            // 구간별 희미한 예고선 (flat 연결로 끊김이 생기지 않게 구간 단위로만 그림)
+            paths.forEach((path, i) => {
+                const ghost = L.polyline(path, {
+                    color: '#94a3b8', weight: 3, opacity: 0.2,
+                    dashArray: (legs[i].mode === 'air' || legs[i].mode === 'train') ? '10,10' : null,
+                    lineJoin: 'round', lineCap: 'round'
+                }).addTo(map);
+                mapLayers.push(ghost);
+            });
+
             const placed = new Set();
             const addPin = (key) => {
                 if (placed.has(key)) return;
@@ -1464,19 +1557,34 @@
                 const marker = L.marker(spot.c, { icon: pinIcon(spot), zIndexOffset: 200 }).addTo(map).bindTooltip(spot.t, { direction:'top', offset:[0,-16] });
                 mapLayers.push(marker);
             };
+
+            // 첫 구간부터 카메라 맞추고 출발
+            await fitPath(paths[0], legs[0].maxZoom || routeData.maxZoom || 12);
+            if (seq !== mapDrawSeq) return;
+
             let bus = L.marker(spots[legs[0].from].c, {
                 icon: moverIcon(legs[0].mode, spots[legs[0].from].c, spots[legs[0].to].c),
                 zIndexOffset: 900
             }).addTo(map);
             bus._aborted = false; activeBus = bus; mapLayers.push(bus);
+
             for (let i = 0; i < legs.length; i++) {
                 if (seq !== mapDrawSeq) return;
                 const leg = legs[i], path = paths[i];
                 const dashPattern = (leg.mode === 'air' || leg.mode === 'train') ? '16, 12' : null;
+                const longAir = leg.mode === 'air' && pathMetres(path) > 800000;
                 addPin(leg.from);
                 const pair = `${spots[leg.from].t} → ${spots[leg.to].t}`;
                 setMapStatus(leg.label || pair);
-                if (bus) bus.setIcon(moverIcon(leg.mode, spots[leg.from].c, spots[leg.to].c));
+                if (bus) {
+                    bus.setLatLng(path[0]);
+                    bus.setIcon(moverIcon(leg.mode, spots[leg.from].c, spots[leg.to].c));
+                }
+                // 구간마다 줌인/줌아웃으로 끊김 없이 따라가기
+                if (routeData.follow !== false) {
+                    await fitPath(path, leg.maxZoom || routeData.maxZoom || 12);
+                    if (seq !== mapDrawSeq) return;
+                }
                 const poly = L.polyline(path, {
                     color: leg.color, weight: dashPattern ? 3.5 : 5, opacity: 0.95,
                     dashArray: dashPattern, lineJoin:'round', lineCap:'round'
@@ -1484,18 +1592,20 @@
                 if (leg.label) poly.bindTooltip('<b>'+leg.label+'</b>', { sticky:true, direction:'center' });
                 mapLayers.push(poly);
                 const ready = await whenPathReady(poly);
-                const ms = lineDuration(ready ? ready.getTotalLength() : 400, routeKey, leg.mode);
-                await Promise.all([animateLine(poly, ms, dashPattern), moveMarkerAlong(bus, path, ms, leg.mode)]);
+                const ms = lineDuration(ready ? ready.getTotalLength() : 400, routeKey, leg.mode, path);
+                await Promise.all([animateLine(poly, ms, dashPattern), moveMarkerAlong(bus, path, ms, leg.mode, longAir)]);
                 if (seq !== mapDrawSeq) return;
                 addPin(leg.to);
-                await new Promise(r => setTimeout(r, isMobileView() ? 280 : 140));
+                await new Promise(r => setTimeout(r, isMobileView() ? 180 : 90));
             }
             if (seq !== mapDrawSeq) return;
             setMapStatus(hint);
             if (bus && map.hasLayer(bus)) map.removeLayer(bus);
             mapLayers = mapLayers.filter(layer => layer !== bus);
             if (activeBus === bus) activeBus = null;
-            map.fitBounds(bounds, { padding: [36, 36], maxZoom: routeData.maxZoom || 13 });
+            // 애니메이션 종료 후 전체 일차 요약 뷰
+            const endKeys = routeData.p || zoomKeys;
+            map.fitBounds(L.latLngBounds(endKeys.map(k => spots[k].c)), { padding: [40, 40], maxZoom: Math.min(routeData.maxZoom || 10, 10), animate: true });
             setTimeout(() => map.invalidateSize(), 160);
         }
         function mapZoom(delta) {
