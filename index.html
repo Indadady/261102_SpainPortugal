@@ -1487,19 +1487,23 @@
         function estimateSeconds(meters, mode) {
             if (!meters || meters <= 0) return 0;
             if (mode === 'air') return meters / (800 / 3.6);
-            if (mode === 'train') return meters / (180 / 3.6);
-            return meters / (25 / 3.6);
+            if (mode === 'train') return meters / (160 / 3.6);
+            return meters / (22 / 3.6);
         }
         function groupTravelSeconds(seconds, mode) {
             if (!seconds || seconds <= 0) return 0;
             if (mode === 'air') return seconds;
-            if (mode === 'train') return Math.max(30 * 60, seconds * 1.2 + 20 * 60);
-            return Math.max(12 * 60, seconds * 1.4 + 8 * 60);
+            // 단체: 인원 파악·승하차·화장실. 장거리는 휴게까지 여유
+            if (mode === 'train') return Math.max(50 * 60, seconds * 1.35 + 25 * 60);
+            const board = 15 * 60;
+            const longHaul = seconds > 2 * 3600;
+            const factor = longHaul ? 1.4 : 1.6;
+            const rest = longHaul ? 25 * 60 : 0;
+            return Math.max(20 * 60, seconds * factor + board + rest);
         }
         function formatApproxTime(seconds) {
             if (!seconds || seconds <= 0) return '';
-            const min = Math.max(1, Math.ceil(seconds / 60));
-            if (min < 55) return '약 ' + Math.max(15, Math.ceil(min / 5) * 5) + '분';
+            const min = Math.max(20, Math.ceil(seconds / 60));
             const rounded = Math.ceil(min / 10) * 10;
             const h = Math.floor(rounded / 60);
             const m = rounded % 60;
