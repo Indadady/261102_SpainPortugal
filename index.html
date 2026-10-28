@@ -1345,6 +1345,9 @@
             <p class="text-xs text-slate-500 leading-relaxed">대표 강원경 · 사업자등록번호 616-81-61548</p>
             <p class="text-xs text-slate-500 leading-relaxed mt-1">제주특별자치도 서귀포시 일주동로 8568 (2층 202호)</p>
             <p class="text-xs text-slate-500 mt-1">010-4025-9889 / 064-762-0224 · traveljeju@naver.com</p>
+            <p class="mt-4 inline-flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 text-xs font-bold px-4 py-2 rounded-full shadow-sm">
+                📊 실시간 가이드북 열람 : <strong class="tm-view-count-val text-tm">...</strong>회
+            </p>
             <div class="pt-6 border-t border-slate-300/50 mt-6">
                 <p class="text-[11px] font-black text-tm mb-2 tracking-wider">© 우리들여행 · UD-261102-SP</p>
                 <p class="text-xs text-slate-500">스페인·포르투갈 스마트 가이드북 · 우리들여행</p>
@@ -2292,46 +2295,91 @@
         }, { threshold: 0.1 });
         io.observe(document.getElementById('map-section'));
 
-        // 실시간 열람 카운터 (ESG)
+        // 실시간 열람 카운터 (ESG) — 모바일에서 /hit 지연 시 숫자가 안 보이던 문제 보완
         const TM_GUIDEBOOK_SLUG = '261102_SpainPortugal';
+        function tmSetViewCount(n) {
+            const els = document.querySelectorAll('.tm-view-count-val');
+            const text = Number(n).toLocaleString();
+            els.forEach(el => { el.textContent = text; });
+        }
+        async function tmFetchJson(url, ms) {
+            const ctrl = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), ms);
+            try {
+                const res = await fetch(url, { signal: ctrl.signal, cache: 'no-store', mode: 'cors' });
+                if (!res.ok) return null;
+                return await res.json();
+            } catch (e) {
+                return null;
+            } finally {
+                clearTimeout(timer);
+            }
+        }
         async function initTmViewCounter() {
             const els = document.querySelectorAll('.tm-view-count-val');
             if (!els.length) return;
             const hitKey = 'tm_hit_' + TM_GUIDEBOOK_SLUG;
             const cacheKey = 'tm_cnt_' + TM_GUIDEBOOK_SLUG;
-            const alreadyHit = sessionStorage.getItem(hitKey);
+            const cached = parseInt(localStorage.getItem(cacheKey) || '0', 10) || 0;
+            if (cached > 0) tmSetViewCount(cached);
+
+            const alreadyHit = !!sessionStorage.getItem(hitKey);
             let count = null;
-            try {
-                const mode = alreadyHit ? 'get' : 'hit';
-                const res = await fetch(`https://abacus.jasoncameron.dev/${mode}/tourmaker.kr/${TM_GUIDEBOOK_SLUG}`);
-                if (res.ok) {
-                    const data = await res.json();
-                    if (typeof data.value === 'number') {
-                        count = data.value;
-                        sessionStorage.setItem(hitKey, '1');
+            const abacusBase = `https://abacus.jasoncameron.dev`;
+            const tallyUrl = `https://tally.yuki.sh/hits/tourmaker/${TM_GUIDEBOOK_SLUG}.json`;
+
+            // 1) 표시는 빠른 GET 우선 (hit는 느리거나 타임아웃되는 경우 많음)
+            const getData = await tmFetchJson(`${abacusBase}/get/tourmaker.kr/${TM_GUIDEBOOK_SLUG}`, 4000);
+            if (getData && typeof getData.value === 'number') {
+                count = getData.value;
+                tmSetViewCount(count);
+            }
+
+            // 2) 세션 첫 방문이면 hit를 짧게 시도해 카운트 증가
+            if (!alreadyHit) {
+                const hitData = await tmFetchJson(`${abacusBase}/hit/tourmaker.kr/${TM_GUIDEBOOK_SLUG}`, 5000);
+                if (hitData && typeof hitData.value === 'number') {
+                    count = hitData.value;
+                    sessionStorage.setItem(hitKey, '1');
+                    tmSetViewCount(count);
+                }
+            }
+
+            // 3) abacus 실패 시 tally 폴백
+            if (count === null) {
+                const tallyData = await tmFetchJson(tallyUrl + (alreadyHit ? '?mode=read' : ''), 4000);
+                if (tallyData && typeof tallyData.visit === 'number') {
+                    count = tallyData.visit;
+                    if (!alreadyHit) sessionStorage.setItem(hitKey, '1');
+                    tmSetViewCount(count);
+                }
+            } else if (!alreadyHit && !sessionStorage.getItem(hitKey)) {
+                // get만 성공하고 hit가 실패한 경우: tally로 1회 증가 시도(읽기 아님)
+                const tallyData = await tmFetchJson(tallyUrl, 3500);
+                if (tallyData && typeof tallyData.visit === 'number') {
+                    sessionStorage.setItem(hitKey, '1');
+                    if (tallyData.visit > count) {
+                        count = tallyData.visit;
+                        tmSetViewCount(count);
                     }
                 }
-            } catch (e) {}
-            if (count === null || count === 0) {
-                try {
-                    const res2 = await fetch(`https://tally.yuki.sh/hits/tourmaker/${TM_GUIDEBOOK_SLUG}.json${alreadyHit ? '?mode=read' : ''}`);
-                    if (res2.ok) {
-                        const data2 = await res2.json();
-                        if (typeof data2.visit === 'number') {
-                            count = data2.visit;
-                            sessionStorage.setItem(hitKey, '1');
-                        }
-                    }
-                } catch (e) {}
             }
+
             if (count !== null && count > 0) {
                 localStorage.setItem(cacheKey, String(count));
+                tmSetViewCount(count);
+            } else if (cached > 0) {
+                tmSetViewCount(cached);
             } else {
-                count = parseInt(localStorage.getItem(cacheKey) || '1', 10) || 1;
+                tmSetViewCount(1);
+                localStorage.setItem(cacheKey, '1');
             }
-            els.forEach(el => { el.textContent = count.toLocaleString(); });
         }
-        initTmViewCounter();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTmViewCounter);
+        } else {
+            initTmViewCounter();
+        }
     </script>
 </body>
 </html>
