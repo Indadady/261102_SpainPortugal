@@ -12,7 +12,7 @@ https://indadady.github.io/261102_SpainPortugal/
 |------|------|
 | 단체 | 민주평화통일자문회의 서귀포시협의회 |
 | 기간 | 2026-11-02 ~ 2026-11-10 (본여행 11/02~11/09 · 11/10 제주 귀국) |
-| 인원 | 19+1TC · 2인1실 · 전용버스 45인승 |
+| 집결 | 기적의 도서관 11/02 04:30 |
 | 쇼핑/옵션 | NO SHOPPING / OPTION |
 | 담당 | 강원경 010-4025-9889 |
 | 현지 가이드 | 미정 |
@@ -20,11 +20,20 @@ https://indadady.github.io/261102_SpainPortugal/
 ## Flights
 
 - OZ8900 CJU 06:30 → GMP 07:45
-- TW402 ICN T1 11:30 → BCN 18:25
+- TW407 ICN T1 11:30 → BCN T2 18:25
 - VY1182 BCN 20:25 → OPO 21:15
-- Renfe Madrid Atocha → Barcelona Sants (포함)
+- Renfe Madrid Atocha 14:27 → Barcelona Sants 17:49 (포함)
 - TW408 BCN 20:30 → ICN 16:50(+1)
 - OZ8995 GMP 19:50 → CJU 21:05
+
+## Hotels
+
+- D1 Hotel Badalona Tower (Badalona)
+- D2–3 HF Ipanema Park (Porto)
+- D4 HF Fenix Lisboa (Lisbon)
+- D5 M.A. Sevilla Congresos (Seville)
+- D6 Hotel Cigarral El Bosque (Toledo)
+- D7 Eurostars Grand Marina (Barcelona)
 
 ## Company
 
